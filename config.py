@@ -20,6 +20,7 @@ class Settings:
     spotify_client_secret: str | None
     spotify_redirect_uri: str | None
     spotify_device_name: str | None
+    wakeword_model_path: str
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -28,6 +29,7 @@ class Settings:
             language=os.getenv("ASSISTANT_LANGUAGE", "de-DE"),
             voice_name=os.getenv("VOICE_NAME", "de-DE-KatjaNeural"),
             wakeword_name=os.getenv("WAKEWORD_NAME", "hey_jarvis"),
+            wakeword_model_path=os.getenv("WAKEWORD_MODEL_PATH", ""),
             wakeword_threshold=float(os.getenv("WAKEWORD_THRESHOLD", "0.6")),
             sample_rate=int(os.getenv("AUDIO_SAMPLE_RATE", "16000")),
             chunk_size=int(os.getenv("AUDIO_CHUNK_SIZE", "1280")),
@@ -45,6 +47,9 @@ class Settings:
 
         if self.wakeword_threshold <= 0 or self.wakeword_threshold > 1:
             raise ValueError("WAKEWORD_THRESHOLD muss zwischen 0 und 1 liegen.")
+        
+        if not self.wakeword_model_path.strip():
+            raise ValueError("WAKEWORD_MODEL_PATH darf nicht leer sein.")
 
         if self.sample_rate <= 0:
             raise ValueError("AUDIO_SAMPLE_RATE muss größer als 0 sein.")

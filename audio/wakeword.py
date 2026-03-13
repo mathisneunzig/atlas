@@ -4,17 +4,40 @@ import wave
 from pathlib import Path
 import numpy as np
 import pyaudio
+import openwakeword
 from openwakeword.model import Model
 from config import Settings
 
 class WakeWordListener:
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
-        self.model = Model(inference_framework="tflite")
+
+        openwakeword.utils.download_models()
+
+        model_path = self._resolve_model_path()
+
+        self.model = Model(
+            wakeword_models=[str(model_path)],
+            inference_framework="tflite",
+        )
+
         self.audio = pyaudio.PyAudio()
         self.stream = None
         self.last_detection_time = 0.0
         self.cooldown_seconds = 2.0
+
+    def _resolve_model_path(self) -> Path:
+        if not getattr(self.settings, "wakeword_model_path", None):
+            raise ValueError(
+                "WAKEWORD_MODEL_PATH ist nicht gesetzt. "
+                "Bitte den konkreten .tflite-Pfad konfigurieren."
+            )
+
+        path = Path(self.settings.wakeword_model_path)
+        if not path.exists():
+            raise FileNotFoundError(f"Wakeword model not found: {path}")
+
+        return path
 
     def start(self) -> None:
         if self.stream is not None:
