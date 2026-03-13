@@ -3,13 +3,13 @@ SpeechRecognition
 openwakeword
 edge-tts
 pyaudio
-
 pandas
 numpy
-
 requests
 wikipedia
 youtube-search-python
 python-weather
 spotipy
-python-dotenv
+dotenv
+tflite-runtime
+tensorflow

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-@dataclass
+@dataclass(slots=True)
 class Settings:
     assistant_name: str
     language: str
