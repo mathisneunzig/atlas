@@ -1,12 +1,9 @@
 from __future__ import annotations
-
 import os
 from dataclasses import dataclass
 from dotenv import load_dotenv
 
-
 load_dotenv()
-
 
 @dataclass
 class Settings:
@@ -23,8 +20,6 @@ class Settings:
     spotify_client_secret: str | None
     spotify_redirect_uri: str | None
     spotify_device_name: str | None
-    tapo_email: str | None
-    tapo_password: str | None
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -42,8 +37,6 @@ class Settings:
             spotify_client_secret=os.getenv("SPOTIFY_CLIENT_SECRET"),
             spotify_redirect_uri=os.getenv("SPOTIFY_REDIRECT_URI"),
             spotify_device_name=os.getenv("SPOTIFY_DEVICE_NAME"),
-            tapo_email=os.getenv("TAPO_EMAIL"),
-            tapo_password=os.getenv("TAPO_PASSWORD"),
         )
 
     def validate_base_config(self) -> None:
@@ -71,18 +64,5 @@ class Settings:
         if missing:
             raise ValueError(
                 "Spotify ist nicht vollständig konfiguriert. "
-                f"Fehlende Variablen: {', '.join(missing)}"
-            )
-
-    def validate_tapo_config(self) -> None:
-        missing = []
-        if not self.tapo_email:
-            missing.append("TAPO_EMAIL")
-        if not self.tapo_password:
-            missing.append("TAPO_PASSWORD")
-
-        if missing:
-            raise ValueError(
-                "Tapo ist nicht vollständig konfiguriert. "
                 f"Fehlende Variablen: {', '.join(missing)}"
             )

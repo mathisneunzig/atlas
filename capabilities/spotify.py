@@ -1,12 +1,8 @@
 from __future__ import annotations
-
 from typing import Any
-
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
-
 from config import Settings
-
 
 class SpotifyCapability:
     def __init__(self, settings: Settings) -> None:

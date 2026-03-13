@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 import asyncio
-
 from config import Settings
 from audio.stt import SpeechToText
 from audio.tts import TextToSpeech
@@ -10,7 +8,6 @@ from capabilities.spotify import SpotifyCapability
 from capabilities.weather import WeatherCapability
 from capabilities.wiki import WikipediaCapability
 from router import CommandRouter, RouteResult
-
 
 class HomeLabAssistant:
     def __init__(self, settings: Settings) -> None:

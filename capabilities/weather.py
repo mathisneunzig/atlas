@@ -1,9 +1,6 @@
 from __future__ import annotations
-
 import python_weather
-
 from config import Settings
-
 
 class WeatherCapability:
     def __init__(self, settings: Settings) -> None:

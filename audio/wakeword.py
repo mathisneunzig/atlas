@@ -1,15 +1,11 @@
 from __future__ import annotations
-
 import time
 import wave
 from pathlib import Path
-
 import numpy as np
 import pyaudio
 from openwakeword.model import Model
-
 from config import Settings
-
 
 class WakeWordListener:
     def __init__(self, settings: Settings) -> None:

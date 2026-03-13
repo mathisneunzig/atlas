@@ -1,7 +1,5 @@
 from __future__ import annotations
-
 import wikipedia
-
 
 class WikipediaCapability:
     def __init__(self, language: str = "de") -> None:

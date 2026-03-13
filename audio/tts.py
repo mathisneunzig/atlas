@@ -1,14 +1,10 @@
 from __future__ import annotations
-
 import asyncio
 import os
 import tempfile
 from pathlib import Path
-
 import edge_tts
-
 from config import Settings
-
 
 class TextToSpeech:
     def __init__(self, settings: Settings) -> None:
