@@ -1,2 +1,2 @@
-# atlas
-Home Assistant
+# Atlas
+Atlas is a self-hosted home assistant.
