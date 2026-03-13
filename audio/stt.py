@@ -1,7 +1,6 @@
 from __future__ import annotations
 
-import SpeechRecognition as sr
-
+import speech_recognition as sr
 
 class SpeechToText:
     def __init__(

@@ -13,7 +13,3 @@ youtube-search-python
 python-weather
 spotipy
 python-dotenv
-
-tapo
-
-portaudio

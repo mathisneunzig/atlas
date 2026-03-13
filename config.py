@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-@dataclass(slots=True)
+@dataclass
 class Settings:
     assistant_name: str
     language: str
